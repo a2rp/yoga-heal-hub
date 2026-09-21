@@ -1,4 +1,4 @@
-import{d as e,r as s,j as t}from"./index-w4rHL2dc.js";const i={Wrapper:e.div`
+import{g as e,r as s,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:e.div`
         max-width: 1200px;
         margin: 0 auto;
         padding: 120px 20px 60px; /* space for fixed header */
