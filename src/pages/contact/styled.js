@@ -48,14 +48,13 @@ export const Styled = {
             background: #f5f5f5;
             color: #333;
             font-family: Verdana, sans-serif;
-            transition: 0.2s ease;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease;
         }
 
         input:focus,
         textarea:focus {
             outline: none;
             border-color: #3b6ef3;
-            background: #ffffff;
             box-shadow: 0 0 0 2px rgba(59, 110, 243, 0.15);
         }
 
@@ -67,17 +66,29 @@ export const Styled = {
         button {
             background: #077054;
             color: #fff;
-            border: none;
+            border: 1px solid #077054;
             border-radius: 6px;
             font-size: 14px;
             padding: 12px 22px;
             cursor: pointer;
-            transition: 0.25s ease;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease,
+                text-shadow 0.18s ease;
             float: right;
         }
 
         button:hover {
-            background: #055c42;
+            border-color: #055c42;
+            box-shadow: 0 8px 18px rgba(7, 112, 84, 0.2);
+            text-shadow: 0 1px 8px rgba(255, 255, 255, 0.35);
+        }
+
+        .success {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            clear: both;
+            padding-top: 18px;
+            color: #0d7b56;
         }
     `,
 };

@@ -1,34 +1,23 @@
-import React, { useCallback } from "react";
+import React from "react";
+import { assetPath } from "../../utils/assets";
 import { Styled } from "./styled";
 
 export default function Home() {
-    // Main hero image – clear yoga posture
-    const mainImg =
-        "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1400&q=80";
-
-    // Fallback yoga image – still on-yoga-topic
-    const fallbackImg =
-        "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=80";
-
-    const onImgError = useCallback(
-        (e) => {
-            e.currentTarget.src = fallbackImg;
-        },
-        [fallbackImg]
-    );
-
     return (
         <Styled.Wrapper>
             <Styled.Tagline>
+                <span className="eyebrow">Move with intention</span>
                 <h1>Yoga</h1>
-                <p>For Better Health &amp; Flexibility</p>
+                <p>For better health and flexibility</p>
+                <span className="intro">
+                    Practical classes, calm guidance, and a welcoming space for every level.
+                </span>
             </Styled.Tagline>
 
             <Styled.Figure
-                src={mainImg}
-                alt="Person practicing yoga"
-                onError={onImgError}
-                loading="lazy"
+                src={assetPath("images/yoga-hero.jpg")}
+                alt="Person practicing yoga beside the water"
+                loading="eager"
             />
         </Styled.Wrapper>
     );

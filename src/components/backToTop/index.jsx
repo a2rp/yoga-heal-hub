@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TbArrowUp } from "react-icons/tb";
 import { Styled } from "./styled";
 
 export default function BackToTop({ targetRef, threshold = 240 }) {
@@ -31,9 +32,7 @@ export default function BackToTop({ targetRef, threshold = 240 }) {
             aria-label="Back to top"
             title="Back to top"
         >
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                <path d="M12 5l6 6-1.4 1.4L13 9.8V19h-2V9.8l-3.6 2.6L6 11l6-6z" fill="currentColor" />
-            </svg>
+            <TbArrowUp size={19} aria-hidden="true" />
         </Styled.Fab>
     );
 }

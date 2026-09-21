@@ -53,11 +53,13 @@ export const Styled = {
         cursor: pointer;
         border: none;
         outline: none;
-        transition: background-color 0.16s ease-out, transform 0.09s ease-out;
+        transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out,
+            text-shadow 0.16s ease-out;
 
         &:hover {
-            background: var(--color-card);
-            transform: translateY(-1px);
+            border-color: var(--color-border-strong);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
 
         .left {
@@ -105,13 +107,12 @@ export const Styled = {
         color: ${({ $active }) =>
             $active ? "var(--color-heading)" : "var(--color-text)"};
         font-size: 0.82rem;
-        transition: background-color 0.16s ease-out, transform 0.09s ease-out,
-            box-shadow 0.16s ease-out;
+        transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out,
+            text-shadow 0.16s ease-out;
 
         &:hover {
-            background: var(--color-card-soft);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
 
         .left {
@@ -161,12 +162,11 @@ export const Styled = {
                 $active ? "var(--color-border-strong)" : "transparent"};
         position: relative;
         transition: background-color 0.16s ease-out, border-color 0.16s ease-out,
-            transform 0.09s ease-out, box-shadow 0.16s ease-out;
+            box-shadow 0.16s ease-out, text-shadow 0.16s ease-out;
 
         &:hover {
-            background: var(--color-card-soft);
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
-            transform: translateY(-1px);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
 
         &::before {

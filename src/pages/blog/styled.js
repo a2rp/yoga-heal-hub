@@ -28,10 +28,14 @@ export const Styled = {
             display: flex;
             align-items: flex-start;
             gap: 25px;
+            padding: 14px;
+            border: 1px solid transparent;
+            border-radius: 14px;
             text-decoration: none;
             color: inherit;
 
-            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+            transition: border-color 0.18s ease-out, box-shadow 0.18s ease-out,
+                text-shadow 0.18s ease-out;
 
             @media (max-width: 720px) {
                 flex-direction: column;
@@ -39,7 +43,9 @@ export const Styled = {
         }
 
         .cardLink:hover {
-            transform: translateY(-2px);
+            border-color: #9cc4a3;
+            box-shadow: 0 12px 26px rgba(25, 56, 34, 0.1);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
 
         img {
@@ -78,6 +84,15 @@ export const Styled = {
             margin: 0;
             line-height: 1.6;
             color: #444;
+        }
+
+        strong {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 12px;
+            color: #0d7b56;
+            font-size: 13px;
         }
     `,
 };

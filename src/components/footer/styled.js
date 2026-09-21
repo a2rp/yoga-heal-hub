@@ -3,63 +3,70 @@ import styled from "styled-components";
 export const Styled = {
     Footer: styled.footer`
         width: 100%;
-        border-top: 1px solid #e1e1e1;
-        background: #fafafa;
-        margin-top: 40px;
+        margin-top: 24px;
+        border-top: 1px solid var(--color-border);
+        background: var(--color-surface);
     `,
 
     Inner: styled.div`
-        max-width: 1200px;
+        width: min(1200px, 100%);
         margin: 0 auto;
-        padding: 18px 20px;
+        padding: 22px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 24px;
         font-size: 13px;
-        color: #555;
-
-        @media (max-width: 720px) {
-            flex-direction: column;
-            text-align: center;
-        }
+        color: var(--color-text-muted);
 
         .info {
-            .address {
-                display: block;
-                font-weight: 500;
-                margin-bottom: 4px;
-                color: #333;
-            }
+            min-width: 0;
+        }
 
-            p {
-                margin: 0;
-            }
+        .address {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--color-heading);
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0;
         }
 
         .social {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .social a {
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--color-border);
+            border-radius: 9px;
+            color: var(--color-text);
+            transition: border-color 0.18s ease, box-shadow 0.18s ease,
+                text-shadow 0.18s ease;
+        }
 
-            a {
-                display: inline-flex;
-                align-items: center;
+        .social a:hover {
+            border-color: var(--color-border-strong);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.2);
+        }
+
+        @media (max-width: 760px) {
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+
+            .social {
                 justify-content: center;
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                border: 1px solid #ddd;
-                color: #555;
-                text-decoration: none;
-                transition: background 0.18s ease, color 0.18s ease,
-                    border-color 0.18s ease;
-            }
-
-            a:hover {
-                background: #077054;
-                border-color: #077054;
-                color: #ffffff;
             }
         }
     `,

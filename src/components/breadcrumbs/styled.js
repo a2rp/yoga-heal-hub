@@ -1,9 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-const rise = keyframes`
-  0% { opacity: 0; transform: translateY(4px); }
-  100% { opacity: 1; transform: translateY(0); }
-`;
+import styled from "styled-components";
 
 export const Styled = {
     Wrap: styled.nav`
@@ -18,8 +13,6 @@ export const Styled = {
         background: var(--color-surface);
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-subtle);
-
-        animation: ${rise} 0.25s ease both;
 
         ol {
             list-style: none;
@@ -66,10 +59,9 @@ export const Styled = {
             border-color: transparent;
         }
         .link:hover {
-            text-decoration: underline;
-            color: var(--color-heading);
-            border-color: var(--color-border-subtle);
-            background: var(--color-surface-soft);
+            border-color: var(--color-border-strong);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
         .link:focus-visible,
         .homeLink:focus-visible {

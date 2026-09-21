@@ -1,4 +1,27 @@
-/* ===== Reset ===== */
+:root {
+    --color-bg: #f4f7f3;
+    --color-card: #ffffff;
+    --color-card-soft: #f7faf7;
+    --color-surface: #ffffff;
+    --color-surface-soft: #edf5ee;
+    --color-hover-surface: #e6f1e8;
+    --color-text: #2e3a32;
+    --color-text-muted: #69766d;
+    --color-heading: #173328;
+    --color-border: #d9e4da;
+    --color-border-soft: #e5ede6;
+    --color-border-subtle: #dce8de;
+    --color-border-strong: #9cc4a3;
+    --color-focus-ring: rgba(13, 123, 86, 0.28);
+    --accent: #0d7b56;
+    --accent-border: #8fbea0;
+    --accent-soft: #e3f1e6;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --shadow-subtle: 0 8px 24px rgba(25, 56, 34, 0.08);
+    --shadow-md: 0 12px 28px rgba(25, 56, 34, 0.14);
+    --focus-ring: 0 0 0 3px var(--color-focus-ring);
+}
 
 *,
 *::before,
@@ -10,43 +33,56 @@ html,
 body,
 #root {
     margin: 0;
-    padding: 0;
     min-height: 100%;
-    background-color: #ffffff;
-    color: #333333;
 }
 
-/* ===== Base body / typography ===== */
-
 body {
+    background: var(--color-bg);
+    color: var(--color-text);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 14px; /* a bit larger for clean workspace UI */
+    font-size: 15px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
 
-/* Subtle text selection */
-
 ::selection {
-    background: #cfe5ff;
-    color: #000000;
+    background: #cde5d2;
+    color: var(--color-heading);
 }
 
-/* Scrollbar – simple */
-
-body::-webkit-scrollbar {
-    width: 8px;
-}
-body::-webkit-scrollbar-track {
-    background: transparent;
-}
-body::-webkit-scrollbar-thumb {
-    background: #b3b3b3;
-    border-radius: 999px;
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
-/* Headings */
+button,
+a,
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease,
+        text-shadow 0.18s ease;
+}
+
+a:hover {
+    text-shadow: 0 1px 10px rgba(13, 123, 86, 0.2);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
 
 h1,
 h2,
@@ -54,54 +90,52 @@ h3,
 h4,
 h5,
 h6 {
+    color: var(--color-heading);
     font-family: "Antonio", sans-serif;
-    color: #111111;
+    letter-spacing: 0.03em;
     margin-top: 0;
-    letter-spacing: 0.03em; /* sharp corporate headings */
 }
 
-/* Basic anchor defaults */
-
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-a:hover {
-    color: #0044aa;
-    text-decoration: underline;
+img {
+    display: block;
+    max-width: 100%;
 }
 
-/* Basic select */
+body::-webkit-scrollbar {
+    width: 9px;
+}
+
+body::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+body::-webkit-scrollbar-thumb {
+    background: var(--accent-border);
+    border-radius: 999px;
+}
 
 select {
-    font-family: inherit;
-    font-size: 13px;
-    color: #333333;
-    background: #f5f5f5;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    padding: 8px 32px 8px 12px;
-    box-shadow: 0 0 0 1px transparent;
-    outline: none;
-    transition: background-color 0.16s ease-out, border-color 0.16s ease-out,
-        box-shadow 0.16s ease-out, color 0.16s ease-out;
     appearance: auto;
-    -webkit-appearance: auto;
-    -moz-appearance: auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    padding: 8px 32px 8px 12px;
 }
 
-select:hover {
-    background: #ffffff;
-    border-color: #999999;
+.eyebrow {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 }
 
-select:focus-visible {
-    outline: 2px solid #007bff;
-    outline-offset: 3px;
-    box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.2);
-}
-
-select option {
-    background: #ffffff;
-    color: #333333;
+.pageLoader {
+    min-height: 50vh;
+    display: grid;
+    place-items: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
 }

@@ -1,58 +1,39 @@
-import React, { useCallback } from "react";
+import React from "react";
+import { assetPath } from "../../utils/assets";
 import { Styled } from "./styled";
 
+const instructors = [
+    { name: "Aarav Sharma", image: "instructor-aarav.jpg" },
+    { name: "Meera Kapoor", image: "instructor-meera.jpg" },
+    { name: "Rohan Verma", image: "instructor-rohan.jpg" },
+    { name: "Priya Nair", image: "instructor-priya.jpg" },
+];
+
 export default function Instructors() {
-    const mainImg =
-        "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=1400&q=80";
-
-    const fallbackImg =
-        "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=80";
-
-    const onImgError = useCallback(
-        (e) => {
-            e.currentTarget.src = fallbackImg;
-        },
-        [fallbackImg]
-    );
-
-    const instructors = [
-        {
-            name: "Aarav Sharma",
-            img: "https://images.unsplash.com/photo-1535930749574-1399327ce78f?auto=format&fit=crop&w=600&q=80",
-        },
-        {
-            name: "Meera Kapoor",
-            img: "https://images.unsplash.com/photo-1544717305-996b815c338c?auto=format&fit=crop&w=600&q=80",
-        },
-        {
-            name: "Rohan Verma",
-            img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
-        },
-        {
-            name: "Priya Nair",
-            img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80",
-        },
-    ];
-
     return (
         <Styled.Wrapper>
+            <span className="eyebrow">Guidance for every level</span>
             <h2>Instructors</h2>
 
             <Styled.Content>
                 <div className="grid">
-                    {instructors.map((i, n) => (
-                        <div className="card" key={n}>
-                            <img src={i.img} onError={onImgError} alt={i.name} />
-                            <h4>{i.name}</h4>
-                        </div>
+                    {instructors.map((instructor) => (
+                        <article className="card" key={instructor.name}>
+                            <img
+                                src={assetPath(`images/${instructor.image}`)}
+                                alt={instructor.name}
+                                loading="lazy"
+                            />
+                            <h4>{instructor.name}</h4>
+                        </article>
                     ))}
                 </div>
 
                 <img
-                    src={mainImg}
-                    alt="Yoga"
-                    onError={onImgError}
+                    src={assetPath("images/yoga-feature.jpg")}
+                    alt="Yoga instructor guiding a seated pose"
                     className="figure"
+                    loading="lazy"
                 />
             </Styled.Content>
         </Styled.Wrapper>

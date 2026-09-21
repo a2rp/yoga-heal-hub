@@ -1,64 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { TbChevronDown, TbMenu2, TbX } from "react-icons/tb";
 import { Styled } from "./styled";
-import { TbMenu2, TbX, TbChevronDown } from "react-icons/tb";
+
+const navItems = [
+    { to: "/home", label: "Home" },
+    { to: "/about", label: "About" },
+    {
+        label: "Classes",
+        children: [
+            { to: "/classes", label: "Class Schedule" },
+            { to: "/instructors", label: "Instructors" },
+        ],
+    },
+    { to: "/contact", label: "Contact" },
+    { to: "/blog", label: "Blog" },
+];
+
+const logoPath = `${import.meta.env.BASE_URL}logo.png`;
 
 export default function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [mobileClassesOpen, setMobileClassesOpen] = useState(false);
+    const [classesOpen, setClassesOpen] = useState(false);
     const location = useLocation();
+    const classesRef = useRef(null);
 
-    // Close mobile menu when route changes
     useEffect(() => {
         setMobileOpen(false);
         setMobileClassesOpen(false);
+        setClassesOpen(false);
     }, [location.pathname]);
 
-    const navItems = [
-        { to: "/home", label: "Home" },
-        { to: "/about", label: "About" },
-        // Classes is special (has dropdown)
-        {
-            label: "Classes",
-            children: [
-                { to: "/classes", label: "Class Schedule" },
-                { to: "/instructors", label: "Instructors" },
-            ],
-        },
-        { to: "/contact", label: "Contact" },
-        { to: "/blog", label: "Blog" },
-    ];
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (!classesRef.current?.contains(event.target)) {
+                setClassesOpen(false);
+            }
+        };
+
+        document.addEventListener("pointerdown", handleOutsideClick);
+        return () => document.removeEventListener("pointerdown", handleOutsideClick);
+    }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = mobileOpen ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [mobileOpen]);
+
+    const linkClass = ({ isActive }) => (isActive ? "link active" : "link");
 
     return (
         <>
             <Styled.HeaderBar>
                 <Styled.Inner>
                     <Styled.Brand>
-                        <NavLink to="/home" className="brandLink">
-                            <span className="title">Yoga-Heal-Hub</span>
-                            <span className="tagline">Holistic Yoga in Jamshedpur</span>
+                        <NavLink to="/home" className="brandLink" aria-label="Yoga-Heal-Hub home">
+                            <img src={logoPath} alt="Yoga-Heal-Hub logo" />
+                            <span>
+                                <span className="title">Yoga-Heal-Hub</span>
+                                <span className="tagline">Holistic yoga in Jamshedpur</span>
+                            </span>
                         </NavLink>
                     </Styled.Brand>
 
-                    {/* Desktop nav */}
-                    <Styled.Nav>
+                    <Styled.Nav aria-label="Primary navigation">
                         <ul>
                             {navItems.map((item) =>
                                 item.children ? (
-                                    <li key={item.label} className="hasSub">
-                                        <button type="button" className="parentBtn">
+                                    <li key={item.label} className="hasSub" ref={classesRef}>
+                                        <button
+                                            type="button"
+                                            className="parentBtn"
+                                            aria-expanded={classesOpen}
+                                            aria-haspopup="true"
+                                            onClick={() => setClassesOpen((value) => !value)}
+                                        >
                                             <span>{item.label}</span>
-                                            <TbChevronDown size={16} />
+                                            <TbChevronDown size={16} aria-hidden="true" />
                                         </button>
-                                        <div className="dropdown">
+                                        <div className="dropdown" data-open={classesOpen}>
                                             {item.children.map((child) => (
-                                                <NavLink
-                                                    key={child.to}
-                                                    to={child.to}
-                                                    className={({ isActive }) =>
-                                                        isActive ? "link active" : "link"
-                                                    }
-                                                >
+                                                <NavLink key={child.to} to={child.to} className={linkClass}>
                                                     {child.label}
                                                 </NavLink>
                                             ))}
@@ -66,12 +91,7 @@ export default function Header() {
                                     </li>
                                 ) : (
                                     <li key={item.to}>
-                                        <NavLink
-                                            to={item.to}
-                                            className={({ isActive }) =>
-                                                isActive ? "link active" : "link"
-                                            }
-                                        >
+                                        <NavLink to={item.to} className={linkClass}>
                                             {item.label}
                                         </NavLink>
                                     </li>
@@ -80,29 +100,24 @@ export default function Header() {
                         </ul>
                     </Styled.Nav>
 
-                    {/* Mobile toggle */}
                     <Styled.MobileToggle>
                         <button
                             type="button"
-                            aria-label="Toggle navigation"
-                            onClick={() => setMobileOpen((v) => !v)}
+                            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+                            aria-expanded={mobileOpen}
+                            onClick={() => setMobileOpen((value) => !value)}
                         >
-                            {mobileOpen ? <TbX size={22} /> : <TbMenu2 size={22} />}
+                            {mobileOpen ? <TbX size={24} /> : <TbMenu2 size={24} />}
                         </button>
                     </Styled.MobileToggle>
                 </Styled.Inner>
             </Styled.HeaderBar>
 
-            {/* Mobile full-screen menu */}
             {mobileOpen && (
-                <Styled.MobileMenu>
+                <Styled.MobileMenu aria-label="Mobile navigation">
                     <div className="topRow">
                         <span className="mobileTitle">Menu</span>
-                        <button
-                            type="button"
-                            aria-label="Close navigation"
-                            onClick={() => setMobileOpen(false)}
-                        >
+                        <button type="button" aria-label="Close navigation" onClick={() => setMobileOpen(false)}>
                             <TbX size={22} />
                         </button>
                     </div>
@@ -114,31 +129,17 @@ export default function Header() {
                                     <button
                                         type="button"
                                         className="mobileParent"
-                                        onClick={() =>
-                                            setMobileClassesOpen((v) => !v)
-                                        }
+                                        aria-expanded={mobileClassesOpen}
+                                        onClick={() => setMobileClassesOpen((value) => !value)}
                                     >
                                         <span>{item.label}</span>
-                                        <TbChevronDown
-                                            size={18}
-                                            className={
-                                                mobileClassesOpen ? "chevron open" : "chevron"
-                                            }
-                                        />
+                                        <TbChevronDown size={18} aria-hidden="true" />
                                     </button>
-
                                     {mobileClassesOpen && (
                                         <ul className="mobileSubList">
                                             {item.children.map((child) => (
                                                 <li key={child.to}>
-                                                    <NavLink
-                                                        to={child.to}
-                                                        className={({ isActive }) =>
-                                                            isActive
-                                                                ? "subLink active"
-                                                                : "subLink"
-                                                        }
-                                                    >
+                                                    <NavLink to={child.to} className={linkClass}>
                                                         {child.label}
                                                     </NavLink>
                                                 </li>
@@ -148,12 +149,7 @@ export default function Header() {
                                 </li>
                             ) : (
                                 <li key={item.to}>
-                                    <NavLink
-                                        to={item.to}
-                                        className={({ isActive }) =>
-                                            isActive ? "mobileLink active" : "mobileLink"
-                                        }
-                                    >
+                                    <NavLink to={item.to} className="mobileLink">
                                         {item.label}
                                     </NavLink>
                                 </li>

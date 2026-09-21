@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Styled } from "./App.styled";
 import Header from "./components/header";
@@ -12,7 +12,7 @@ export default function App() {
     const location = useLocation();
 
     useEffect(() => {
-        wrapperRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+        wrapperRef.current?.scrollTo({ top: 0, behavior: "auto" });
     }, [location.pathname]);
 
     return (

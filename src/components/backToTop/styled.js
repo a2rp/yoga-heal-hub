@@ -1,46 +1,37 @@
 import styled from "styled-components";
 
-/* Floating action button (bottom-right) */
 export const Styled = {
     Fab: styled.button`
         position: fixed;
         right: 18px;
         bottom: 18px;
         z-index: 9990;
-
         display: grid;
         place-items: center;
-
         width: 44px;
         height: 44px;
+        border: 1px solid var(--color-border-strong);
         border-radius: 999px;
-
-        border: 1px solid var(--border);
-        background: var(--card);
-        color: var(--text);
+        background: var(--color-surface);
+        color: var(--accent);
         box-shadow: var(--shadow-md);
-
         cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.2s ease,
-            background 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
-
-        /* Show/Hide */
         opacity: ${(p) => (p.$show ? 1 : 0)};
         visibility: ${(p) => (p.$show ? "visible" : "hidden")};
-        transform: ${(p) => (p.$show ? "translateY(0)" : "translateY(6px)")};
+        transition: opacity 0.2s ease, visibility 0.2s ease,
+            border-color 0.18s ease, box-shadow 0.18s ease;
 
         &:hover {
-            background: var(--tint-weak);
+            border-color: var(--accent);
+            box-shadow: 0 12px 30px rgba(13, 123, 86, 0.22);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.2);
         }
-        &:active {
-            transform: translateY(1px);
-        }
+
         &:focus-visible {
             outline: none;
             box-shadow: var(--focus-ring);
         }
 
-        /* Smaller on very small screens */
         @media (max-width: 420px) {
             right: 12px;
             bottom: 12px;

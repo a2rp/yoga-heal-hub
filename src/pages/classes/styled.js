@@ -50,11 +50,18 @@ export const Styled = {
             }
 
             span {
-                display: block;
+                display: flex;
+                align-items: center;
+                gap: 7px;
                 font-family: Verdana, sans-serif;
                 font-size: 14px;
                 color: #666;
                 margin-bottom: 6px;
+
+                svg {
+                    color: #0d7b56;
+                    flex: 0 0 auto;
+                }
             }
         }
 

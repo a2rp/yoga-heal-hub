@@ -56,14 +56,23 @@ export const Styled = {
         margin-top: 32px;
 
         .backLink {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 11px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
             font-size: 14px;
             text-decoration: none;
             color: #0066cc;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease,
+                text-shadow 0.18s ease;
         }
 
         .backLink:hover {
-            text-decoration: underline;
-            color: #004a99;
+            border-color: var(--color-border-strong);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
     `,
 
@@ -76,14 +85,23 @@ export const Styled = {
         }
 
         .backLink {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 11px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
             font-size: 14px;
             text-decoration: none;
             color: #0066cc;
+            transition: border-color 0.18s ease, box-shadow 0.18s ease,
+                text-shadow 0.18s ease;
         }
 
         .backLink:hover {
-            text-decoration: underline;
-            color: #004a99;
+            border-color: var(--color-border-strong);
+            box-shadow: var(--shadow-subtle);
+            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
         }
     `,
 };
