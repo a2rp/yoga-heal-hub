@@ -1,4 +1,4 @@
-import{g as s,r as n,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:s.div`
+import{g as i,j as a}from"./index-qnHB0BdE.js";import{a as r}from"./assets-CTgU6s4x.js";const t={Wrapper:i.div`
         max-width: 1200px;
         margin: 0 auto;
         padding: 120px 20px 60px;
@@ -9,7 +9,7 @@ import{g as s,r as n,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:s.div`
             margin-bottom: 30px;
             color: #222;
         }
-    `,Content:s.div`
+    `,Content:i.div`
         display: flex;
         justify-content: space-between;
         gap: 40px;
@@ -60,4 +60,4 @@ import{g as s,r as n,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:s.div`
                 margin: 0 auto;
             }
         }
-    `};function d(){const e="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=1400&q=80",o="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=80",r=n.useCallback(a=>{a.currentTarget.src=o},[o]),p=[{name:"Aarav Sharma",img:"https://images.unsplash.com/photo-1535930749574-1399327ce78f?auto=format&fit=crop&w=600&q=80"},{name:"Meera Kapoor",img:"https://images.unsplash.com/photo-1544717305-996b815c338c?auto=format&fit=crop&w=600&q=80"},{name:"Rohan Verma",img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80"},{name:"Priya Nair",img:"https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80"}];return t.jsxs(i.Wrapper,{children:[t.jsx("h2",{children:"Instructors"}),t.jsxs(i.Content,{children:[t.jsx("div",{className:"grid",children:p.map((a,m)=>t.jsxs("div",{className:"card",children:[t.jsx("img",{src:a.img,onError:r,alt:a.name}),t.jsx("h4",{children:a.name})]},m))}),t.jsx("img",{src:e,alt:"Yoga",onError:r,className:"figure"})]})]})}export{d as default};
+    `},s=[{name:"Aarav Sharma",image:"instructor-aarav.jpg"},{name:"Meera Kapoor",image:"instructor-meera.jpg"},{name:"Rohan Verma",image:"instructor-rohan.jpg"},{name:"Priya Nair",image:"instructor-priya.jpg"}];function m(){return a.jsxs(t.Wrapper,{children:[a.jsx("span",{className:"eyebrow",children:"Guidance for every level"}),a.jsx("h2",{children:"Instructors"}),a.jsxs(t.Content,{children:[a.jsx("div",{className:"grid",children:s.map(e=>a.jsxs("article",{className:"card",children:[a.jsx("img",{src:r(`images/${e.image}`),alt:e.name,loading:"lazy"}),a.jsx("h4",{children:e.name})]},e.name))}),a.jsx("img",{src:r("images/yoga-feature.jpg"),alt:"Yoga instructor guiding a seated pose",className:"figure",loading:"lazy"})]})]})}export{m as default};

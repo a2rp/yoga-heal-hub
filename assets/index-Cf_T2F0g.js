@@ -1,4 +1,4 @@
-import{g as a,r as d,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:a.div`
+import{g as t,j as e,T as n}from"./index-qnHB0BdE.js";import{a as o}from"./assets-CTgU6s4x.js";const i={Wrapper:t.div`
         max-width: 1200px;
         margin: 0 auto;
         padding: 120px 20px 60px;
@@ -9,7 +9,7 @@ import{g as a,r as d,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:a.div`
             margin-bottom: 30px;
             color: #222;
         }
-    `,Content:a.div`
+    `,Content:t.div`
         display: flex;
         justify-content: space-between;
         gap: 40px;
@@ -45,11 +45,18 @@ import{g as a,r as d,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:a.div`
             }
 
             span {
-                display: block;
+                display: flex;
+                align-items: center;
+                gap: 7px;
                 font-family: Verdana, sans-serif;
                 font-size: 14px;
                 color: #666;
                 margin-bottom: 6px;
+
+                svg {
+                    color: #0d7b56;
+                    flex: 0 0 auto;
+                }
             }
         }
 
@@ -65,4 +72,4 @@ import{g as a,r as d,j as t}from"./index-B-2_bBs_.js";const i={Wrapper:a.div`
                 margin: 0 auto;
             }
         }
-    `};function p(){const n="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=80",s="https://images.unsplash.com/photo-1554311883-83339d3da1c6?auto=format&fit=crop&w=1400&q=80",o=d.useCallback(e=>{e.currentTarget.src=s},[s]),r=[{title:"Beginners",desc:"Perfect for newcomers. Learn breathing, alignment basics and gentle stretches.",slot1:"Mon • Wed • Fri : 8 AM – 9 AM",slot2:"Tue • Thu • Sat : 10 AM – 11 AM"},{title:"Intermediate",desc:"Increase strength, flexibility and balance with guided postures.",slot1:"Mon • Wed • Fri : 10 AM – 11 AM",slot2:"Tue • Thu • Sat : 1 PM – 2 PM"},{title:"Advanced",desc:"Challenging flows, deeper asanas and strength training for experienced yogis.",slot1:"Mon • Wed • Fri : 1 PM – 2 PM",slot2:"Tue • Thu • Sat : 8 AM – 9 AM"}];return t.jsxs(i.Wrapper,{children:[t.jsx("h2",{children:"Classes"}),t.jsxs(i.Content,{children:[t.jsx("div",{className:"left",children:r.map((e,l)=>t.jsxs("div",{className:"section",children:[t.jsx("h3",{children:e.title}),t.jsx("p",{children:e.desc}),t.jsx("span",{children:e.slot1}),t.jsx("span",{children:e.slot2})]},l))}),t.jsx("img",{src:n,alt:"Yoga class",onError:o,className:"figure"})]})]})}export{p as default};
+    `},r=[{title:"Beginners",desc:"Perfect for newcomers. Learn breathing, alignment basics, and gentle stretches.",slots:["Mon, Wed, Fri: 8 AM - 9 AM","Tue, Thu, Sat: 10 AM - 11 AM"]},{title:"Intermediate",desc:"Increase strength, flexibility, and balance with guided postures.",slots:["Mon, Wed, Fri: 10 AM - 11 AM","Tue, Thu, Sat: 1 PM - 2 PM"]},{title:"Advanced",desc:"Challenging flows, deeper asanas, and strength training for experienced yogis.",slots:["Mon, Wed, Fri: 1 PM - 2 PM","Tue, Thu, Sat: 8 AM - 9 AM"]}];function c(){return e.jsxs(i.Wrapper,{children:[e.jsx("span",{className:"eyebrow",children:"Find your pace"}),e.jsx("h2",{children:"Classes"}),e.jsxs(i.Content,{children:[e.jsx("div",{className:"left",children:r.map(s=>e.jsxs("article",{className:"section",children:[e.jsx("h3",{children:s.title}),e.jsx("p",{children:s.desc}),s.slots.map(a=>e.jsxs("span",{children:[e.jsx(n,{"aria-hidden":"true"}),a]},a))]},s.title))}),e.jsx("img",{src:o("images/yoga-class.jpg"),alt:"Person practicing yoga outdoors",className:"figure",loading:"lazy"})]})]})}export{c as default};

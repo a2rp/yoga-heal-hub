@@ -1,4 +1,4 @@
-import{g as o,G as i,a as s,r as c,j as e}from"./index-B-2_bBs_.js";const l=o.main`
+import{g as o,G as i,d as s,r as c,j as e}from"./index-qnHB0BdE.js";const l=o.main`
     min-height: calc(100vh - 60px);
     padding: 32px 16px;
     display: flex;
