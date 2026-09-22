@@ -1,4 +1,4 @@
-import{g as o,N as t,j as e}from"./index-DG-v9sn7.js";import{o as r,k as n}from"./index-BKD0I_yx.js";const i={Wrapper:o.main`
+import{g as o,N as t,j as e}from"./index-NBNCuAmX.js";import{o as r,k as n}from"./index-vk7DLoL0.js";const i={Wrapper:o.main`
         display: grid;
         place-items: center;
 
