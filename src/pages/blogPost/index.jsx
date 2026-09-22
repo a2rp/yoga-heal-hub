@@ -1,96 +1,178 @@
-import React, { useMemo } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { TbArrowLeft } from "react-icons/tb";
+import { TbArrowLeft, TbCalendar, TbClock } from "react-icons/tb";
+import Breadcrumbs from "../../components/breadcrumbs";
 import { assetPath } from "../../utils/assets";
 import { Styled } from "./styled";
 
-export default function BlogPost() {
-    const { slug } = useParams();
-    const posts = useMemo(
-        () => [
+const posts = [
+    {
+        slug: "morning-yoga-for-energy",
+        title: "Morning Yoga for Energy",
+        date: "Jan 12, 2025",
+        cover: "yoga-morning.jpg",
+        readTime: "5 min read",
+        intro: "A short morning practice can help the body feel less stiff and give the mind a calmer start before the day becomes busy.",
+        sections: [
             {
-                slug: "morning-yoga-for-energy",
-                title: "Morning Yoga for Energy",
-                date: "Jan 12, 2025",
-                cover: "yoga-morning.jpg",
-                readTime: "5 min read",
-                sections: [
-                    ["Why Mornings Matter", "Practicing yoga in the morning helps reset your breath, posture, and focus before the day becomes busy. A gentle sequence of sun salutations, forward folds, and twists can wake up your spine and improve circulation."],
-                    ["Simple Morning Flow", "Start with 5 slow breaths in a comfortable seated position. Move into a few rounds of Cat-Cow, followed by Sun Salutation A at your own pace. Finish with a short seated twist and a minute of stillness."],
-                    ["Tips to Stay Consistent", "Keep your mat visible, sleep a little earlier, and treat your practice like a meeting with yourself. Even 10 minutes daily is more powerful than one long session in a week."],
-                ],
+                title: "Why mornings can feel different",
+                text: "After several hours of sleep, the body often feels less mobile. Gentle movement helps warm the joints, improve circulation, and gradually wake up the muscles without demanding too much too early.",
             },
             {
-                slug: "inner-calm-through-breath",
-                title: "Inner Calm Through Breath",
-                date: "Jan 10, 2025",
-                cover: "yoga-hero.jpg",
-                readTime: "4 min read",
-                sections: [
-                    ["Breath as a Reset Button", "The way we breathe directly affects our nervous system. Slow, deep breathing signals the body that it is safe, helping to reduce stress, anxiety, and restlessness."],
-                    ["Try This Simple Pattern", "Inhale through the nose for 4 counts, hold for 2 counts, and exhale gently through the nose for 6 counts. Repeat this cycle 8 to 10 times while sitting upright and relaxed."],
-                    ["Bringing Calm into Daily Life", "Use this breath pattern before meetings, while travelling, or whenever the mind feels scattered. Over time, the body learns to return to calm more easily."],
-                ],
+                title: "A simple morning sequence",
+                text: "Begin with five slow breaths while sitting comfortably. Continue with gentle neck and shoulder movement, a few rounds of Cat-Cow, a relaxed forward fold, and two or three easy Sun Salutations. Finish with a quiet minute of breathing.",
             },
             {
-                slug: "flexibility-made-easy",
-                title: "Flexibility Made Easy",
-                date: "Jan 7, 2025",
-                cover: "yoga-flexibility.jpg",
-                readTime: "6 min read",
-                sections: [
-                    ["Stretching Without Forcing", "Flexibility improves when we move with patience instead of forcing the body. Staying in a posture with steady breath allows muscles and fascia to gradually release tension."],
-                    ["Areas to Focus On", "Hamstrings, hips, and shoulders usually hold a lot of stiffness. Simple forward folds, low lunges, and shoulder openers can create a big difference when practiced regularly."],
-                    ["Create a Gentle Routine", "Choose 4 to 5 stretches, hold each for 5 to 8 breaths, and move slowly. Over a few weeks, you will notice more ease in your practice and in daily movements."],
-                ],
+                title: "Keep the routine realistic",
+                text: "You do not need a long session every morning. Ten consistent minutes can be more useful than planning a difficult routine that is rarely completed. Keep your mat easy to reach and choose movements you already know.",
             },
         ],
-        []
-    );
+    },
+    {
+        slug: "inner-calm-through-breath",
+        title: "Inner Calm Through Breath",
+        date: "Jan 10, 2025",
+        cover: "yoga-hero.jpg",
+        readTime: "4 min read",
+        intro: "Breathing slowly and deliberately can create a useful pause when the body feels tense or the mind feels too busy.",
+        sections: [
+            {
+                title: "Use the breath as a signal",
+                text: "Fast, shallow breathing often appears during stress. Slowing the breath gives the body a chance to settle. The goal is not to force relaxation but to create conditions where it can happen naturally.",
+            },
+            {
+                title: "Try a comfortable pattern",
+                text: "Sit upright without becoming rigid. Inhale through the nose for four comfortable counts, pause briefly, and exhale for six counts. Repeat the cycle several times without straining or holding the breath for too long.",
+            },
+            {
+                title: "Use it during normal days",
+                text: "Breathing exercises can be useful before work, during travel, between tasks, or before sleep. Short sessions are easier to repeat and can become a practical part of an everyday routine.",
+            },
+        ],
+    },
+    {
+        slug: "flexibility-made-easy",
+        title: "Flexibility Made Easy",
+        date: "Jan 7, 2025",
+        cover: "yoga-flexibility.jpg",
+        readTime: "6 min read",
+        intro: "Improving flexibility is usually a gradual process. Comfortable repetition and patience are more useful than forcing the body into deeper positions.",
+        sections: [
+            {
+                title: "Avoid chasing the deepest stretch",
+                text: "A strong stretching sensation is not automatically better. Stay in a range where breathing remains steady and the muscles can relax. Sharp pain, pinching, or numbness are signs to reduce the range or stop.",
+            },
+            {
+                title: "Focus on common tight areas",
+                text: "The hips, hamstrings, calves, chest, and shoulders often respond well to regular mobility work. A few simple movements practiced consistently can make everyday activities and yoga poses feel easier.",
+            },
+            {
+                title: "Build a small routine",
+                text: "Choose four or five movements and spend a few calm breaths in each position. Repeat the routine several times each week and pay attention to comfort and control instead of comparing range with someone else.",
+            },
+        ],
+    },
+];
+
+const BlogPost = () => {
+    const { slug } = useParams();
 
     const post = posts.find((item) => item.slug === slug);
 
     if (!post) {
         return (
             <Styled.Wrapper>
-                <h2>Blog</h2>
-                <Styled.NotFoundBox>
-                    <p>We could not find this article.</p>
-                    <NavLink to="/blog" className="backLink">
-                        <TbArrowLeft aria-hidden="true" /> Back to Blog
-                    </NavLink>
-                </Styled.NotFoundBox>
+                <Styled.Container>
+                    <Breadcrumbs
+                        items={[
+                            {
+                                label: "Blog",
+                                to: "/blog",
+                            },
+                            {
+                                label: "Article not found",
+                            },
+                        ]}
+                    />
+
+                    <Styled.NotFound>
+                        <Styled.NotFoundTitle>
+                            Article not found
+                        </Styled.NotFoundTitle>
+
+                        <Styled.NotFoundText>
+                            The article may have been moved or the address may
+                            be incorrect.
+                        </Styled.NotFoundText>
+
+                        <Styled.BackLink to="/blog">
+                            <TbArrowLeft aria-hidden="true" />
+                            Back to Blog
+                        </Styled.BackLink>
+                    </Styled.NotFound>
+                </Styled.Container>
             </Styled.Wrapper>
         );
     }
 
     return (
         <Styled.Wrapper>
-            <span className="eyebrow">Wellness journal</span>
-            <h2>{post.title}</h2>
+            <Styled.Container>
+                <Breadcrumbs
+                    items={[
+                        {
+                            label: "Blog",
+                            to: "/blog",
+                        },
+                        {
+                            label: post.title,
+                        },
+                    ]}
+                />
 
-            <Styled.MetaRow>
-                <span>{post.date}</span>
-                <span aria-hidden="true">•</span>
-                <span>{post.readTime}</span>
-            </Styled.MetaRow>
+                <Styled.Header>
+                    <Styled.Label>Wellness Journal</Styled.Label>
 
-            <Styled.Cover src={assetPath(`images/${post.cover}`)} alt={post.title} loading="eager" />
+                    <Styled.Title>{post.title}</Styled.Title>
 
-            <Styled.Article>
-                {post.sections.map(([heading, text]) => (
-                    <section key={heading}>
-                        <h3>{heading}</h3>
-                        <p>{text}</p>
-                    </section>
-                ))}
-            </Styled.Article>
+                    <Styled.Meta>
+                        <span>
+                            <TbCalendar aria-hidden="true" />
+                            {post.date}
+                        </span>
 
-            <Styled.BottomNav>
-                <NavLink to="/blog" className="backLink">
-                    <TbArrowLeft aria-hidden="true" /> Back to Blog
-                </NavLink>
-            </Styled.BottomNav>
+                        <span>
+                            <TbClock aria-hidden="true" />
+                            {post.readTime}
+                        </span>
+                    </Styled.Meta>
+
+                    <Styled.Intro>{post.intro}</Styled.Intro>
+                </Styled.Header>
+
+                <Styled.Cover
+                    src={assetPath(`images/${post.cover}`)}
+                    alt={post.title}
+                    loading="eager"
+                />
+
+                <Styled.Article>
+                    {post.sections.map((section) => (
+                        <section key={section.title}>
+                            <h2>{section.title}</h2>
+                            <p>{section.text}</p>
+                        </section>
+                    ))}
+                </Styled.Article>
+
+                <Styled.Bottom>
+                    <Styled.BackLink to="/blog">
+                        <TbArrowLeft aria-hidden="true" />
+                        Back to Blog
+                    </Styled.BackLink>
+                </Styled.Bottom>
+            </Styled.Container>
         </Styled.Wrapper>
     );
-}
+};
+
+export default BlogPost;

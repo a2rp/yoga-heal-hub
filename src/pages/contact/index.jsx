@@ -1,51 +1,163 @@
-import React, { useState } from "react";
-import { TbCheck } from "react-icons/tb";
+import { useState } from "react";
+import { TbMail, TbMapPin, TbSend } from "react-icons/tb";
+import Breadcrumbs from "../../components/breadcrumbs";
 import { Styled } from "./styled";
 
-export default function Contact() {
-    const [submitted, setSubmitted] = useState(false);
+const Contact = () => {
+    const [message, setMessage] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setSubmitted(true);
-        event.currentTarget.reset();
+
+        const form = new FormData(event.currentTarget);
+
+        const name = String(form.get("name") || "").trim();
+        const email = String(form.get("email") || "").trim();
+        const subject = String(form.get("subject") || "").trim();
+        const body = String(form.get("message") || "").trim();
+
+        const emailSubject = encodeURIComponent(`[Yoga Heal Hub] ${subject}`);
+
+        const emailBody = encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\n\n${body}`,
+        );
+
+        window.location.href = `mailto:ash.ranjan09@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+        setMessage(
+            "Your email application should open with the message ready to send.",
+        );
     };
 
     return (
         <Styled.Wrapper>
-            <span className="eyebrow">Start a conversation</span>
-            <h2>Contact</h2>
+            <Styled.Container>
+                <Breadcrumbs items={[{ label: "Contact" }]} />
 
-            <Styled.Form onSubmit={handleSubmit}>
-                <h3>Inquiries</h3>
+                <Styled.Header>
+                    <Styled.Label>Get In Touch</Styled.Label>
 
-                <label>
-                    <span>Name</span>
-                    <input name="name" type="text" placeholder="Enter your full name" required />
-                </label>
+                    <Styled.Title>Start a conversation</Styled.Title>
 
-                <label>
-                    <span>Email</span>
-                    <input name="email" type="email" placeholder="Enter your email address" required />
-                </label>
+                    <Styled.Intro>
+                        Have a question about classes, levels, schedules, or
+                        getting started? Send a message and continue the
+                        conversation through your email application.
+                    </Styled.Intro>
+                </Styled.Header>
 
-                <label>
-                    <span>Subject</span>
-                    <input name="subject" type="text" placeholder="What is this about?" required />
-                </label>
+                <Styled.Layout>
+                    <Styled.Info>
+                        <Styled.InfoCard>
+                            <Styled.IconBox>
+                                <TbMail aria-hidden="true" />
+                            </Styled.IconBox>
 
-                <label>
-                    <span>Message</span>
-                    <textarea name="message" placeholder="Write your message..." required />
-                </label>
+                            <div>
+                                <h2>Email</h2>
 
-                <button type="submit">Send message</button>
-                {submitted && (
-                    <p className="success" role="status">
-                        <TbCheck aria-hidden="true" /> Thanks, your message is ready to be reviewed.
-                    </p>
-                )}
-            </Styled.Form>
+                                <a href="mailto:ash.ranjan09@gmail.com">
+                                    ash.ranjan09@gmail.com
+                                </a>
+                            </div>
+                        </Styled.InfoCard>
+
+                        <Styled.InfoCard>
+                            <Styled.IconBox>
+                                <TbMapPin aria-hidden="true" />
+                            </Styled.IconBox>
+
+                            <div>
+                                <h2>Practice</h2>
+
+                                <p>
+                                    Yoga sessions designed for different
+                                    experience levels and everyday routines.
+                                </p>
+                            </div>
+                        </Styled.InfoCard>
+                    </Styled.Info>
+
+                    <Styled.Form onSubmit={handleSubmit}>
+                        <Styled.FormTitle>Send an inquiry</Styled.FormTitle>
+
+                        <Styled.FormText>
+                            Fill in the details below. Your default email
+                            application will open with the message prepared.
+                        </Styled.FormText>
+
+                        <Styled.Field>
+                            <Styled.FieldLabel htmlFor="contact-name">
+                                Name
+                            </Styled.FieldLabel>
+
+                            <Styled.Input
+                                id="contact-name"
+                                name="name"
+                                type="text"
+                                placeholder="Your full name"
+                                autoComplete="name"
+                                required
+                            />
+                        </Styled.Field>
+
+                        <Styled.Field>
+                            <Styled.FieldLabel htmlFor="contact-email">
+                                Email
+                            </Styled.FieldLabel>
+
+                            <Styled.Input
+                                id="contact-email"
+                                name="email"
+                                type="email"
+                                placeholder="you@example.com"
+                                autoComplete="email"
+                                required
+                            />
+                        </Styled.Field>
+
+                        <Styled.Field>
+                            <Styled.FieldLabel htmlFor="contact-subject">
+                                Subject
+                            </Styled.FieldLabel>
+
+                            <Styled.Input
+                                id="contact-subject"
+                                name="subject"
+                                type="text"
+                                placeholder="What would you like to ask?"
+                                required
+                            />
+                        </Styled.Field>
+
+                        <Styled.Field>
+                            <Styled.FieldLabel htmlFor="contact-message">
+                                Message
+                            </Styled.FieldLabel>
+
+                            <Styled.TextArea
+                                id="contact-message"
+                                name="message"
+                                placeholder="Write your message here"
+                                required
+                            />
+                        </Styled.Field>
+
+                        <Styled.SubmitButton type="submit">
+                            <TbSend aria-hidden="true" />
+                            Prepare Email
+                        </Styled.SubmitButton>
+
+                        {message && (
+                            <Styled.Status role="status">
+                                {message}
+                            </Styled.Status>
+                        )}
+                    </Styled.Form>
+                </Styled.Layout>
+            </Styled.Container>
         </Styled.Wrapper>
     );
-}
+};
+
+export default Contact;

@@ -1,44 +1,43 @@
 import styled from "styled-components";
 
-const scrollbar = `
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-border) transparent;
-
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: var(--accent-border);
-        border-radius: 999px;
-        border: 3px solid transparent;
-        background-clip: content-box;
-    }
-`;
-
 export const Styled = {
     Wrapper: styled.div`
-        height: 100vh;
-        overflow: hidden;
-        overflow-y: auto;
-        scrollbar-gutter: stable;
-        background: var(--color-bg);
-        color: var(--color-text);
-        ${scrollbar}
+        width: 100%;
+        min-height: 100vh;
+
+        color: #263a2e;
+        background: #ffffff;
     `,
 
-    Main: styled.main`
+    Main: styled.div`
         width: 100%;
-        background: var(--color-bg);
+        min-height: calc(100vh - 76px);
+
+        padding-top: 76px;
+
+        @media (max-width: 600px) {
+            min-height: calc(100vh - 70px);
+
+            padding-top: 70px;
+        }
     `,
 
-    RoutesWrapper: styled.div`
-        width: 100%;
-        min-height: calc(100vh - 84px);
-        padding: 84px 0 12px;
+    RouteLoader: styled.div`
+        display: grid;
+        place-items: center;
+
+        min-height: calc(100vh - 76px);
+
+        padding: 40px 20px;
+
+        color: #607168;
+
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+
+        @media (max-width: 600px) {
+            min-height: calc(100vh - 70px);
+        }
     `,
 };

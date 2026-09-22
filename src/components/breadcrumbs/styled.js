@@ -1,109 +1,122 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 export const Styled = {
-    Wrap: styled.nav`
-        --pad-x: 12px;
-        --h: 38px;
-
-        display: block;
+    Wrapper: styled.nav`
         width: 100%;
-        margin: 30px 0;
 
-        border: 1px solid var(--color-border-subtle);
-        background: var(--color-surface);
-        border-radius: var(--radius-md);
-        box-shadow: var(--shadow-subtle);
+        margin-bottom: 24px;
+    `,
 
-        ol {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 6px;
-            min-height: var(--h);
-            padding: 6px var(--pad-x);
+    List: styled.ol`
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+    `,
+
+    Group: styled.div`
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    `,
+
+    Item: styled.li`
+        display: flex;
+        align-items: center;
+
+        color: #5d6b63;
+
+        font-size: 0.82rem;
+        line-height: 1.5;
+    `,
+
+    HomeLink: styled(NavLink)`
+        display: grid;
+        place-items: center;
+
+        width: 34px;
+        height: 34px;
+
+        color: #1f6f4a;
+
+        border: 1px solid #d7e2db;
+        border-radius: 9px;
+
+        text-decoration: none;
+
+        transition:
+            border-color 180ms ease,
+            box-shadow 180ms ease,
+            text-shadow 180ms ease;
+
+        svg {
+            width: 13px;
+            height: 13px;
         }
 
-        .crumb {
-            display: inline-flex;
-            align-items: center;
-            min-height: 28px;
-            max-width: 240px;
+        &:hover {
+            border-color: #8eb29e;
+
+            box-shadow: 0 5px 16px rgba(31, 111, 74, 0.1);
+
+            text-shadow: 0 1px 8px rgba(31, 111, 74, 0.18);
         }
 
-        .homeLink,
-        .link,
-        .current {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 8px;
-            border-radius: var(--radius-sm);
-            line-height: 1;
-            text-decoration: none;
-            color: var(--color-text);
-            border: 1px solid transparent;
-            background: transparent;
-            max-width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        &:focus-visible {
+            outline: 3px solid rgba(31, 111, 74, 0.18);
+            outline-offset: 2px;
+        }
+    `,
+
+    Link: styled(NavLink)`
+        padding: 6px 2px;
+
+        color: #456052;
+
+        border-bottom: 1px solid transparent;
+
+        text-decoration: none;
+
+        transition:
+            border-color 180ms ease,
+            box-shadow 180ms ease,
+            text-shadow 180ms ease;
+
+        &:hover {
+            border-color: #8eb29e;
+
+            text-shadow: 0 1px 8px rgba(31, 111, 74, 0.16);
         }
 
-        .homeLink {
-            background: var(--color-surface-soft);
-            border-color: var(--color-border-subtle);
+        &:focus-visible {
+            outline: 3px solid rgba(31, 111, 74, 0.18);
+            outline-offset: 2px;
         }
+    `,
 
-        .link {
-            border-color: transparent;
-        }
-        .link:hover {
-            border-color: var(--color-border-strong);
-            box-shadow: var(--shadow-subtle);
-            text-shadow: 0 1px 8px rgba(13, 123, 86, 0.16);
-        }
-        .link:focus-visible,
-        .homeLink:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--color-focus-ring);
-        }
+    Current: styled.span`
+        padding: 6px 2px;
 
-        .current {
-            font-weight: 700;
-            border-color: var(--color-border-strong);
-            background: var(--color-hover-surface);
-            cursor: default;
-        }
+        color: #263b2f;
 
-        .sep {
-            display: inline-flex;
-            align-items: center;
-            color: var(--color-text-muted);
-            opacity: 0.8;
-        }
+        font-weight: 600;
+    `,
 
-        /* Visually hidden label for home text next to icon */
-        .vis {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
+    Separator: styled.span`
+        display: grid;
+        place-items: center;
 
-        @media (max-width: 720px) {
-            ol {
-                gap: 4px;
-                padding: 6px 8px;
-            }
-            .crumb {
-                max-width: 160px;
-            }
+        color: #9caaa2;
+
+        svg {
+            width: 9px;
+            height: 9px;
         }
     `,
 };

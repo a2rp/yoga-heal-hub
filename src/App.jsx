@@ -1,32 +1,29 @@
-// src/App.jsx
-import React, { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import { Styled } from "./App.styled";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import AppRoutes from "./AppRoutes";
+import { BrowserRouter } from "react-router-dom";
+
 import BackToTop from "./components/backToTop";
+import Footer from "./components/footer";
+import Header from "./components/header";
+import AppRoutes from "./AppRoutes";
+import { Styled } from "./App.styled";
 
-export default function App() {
-    const wrapperRef = useRef(null);
-    const location = useLocation();
+const routerBase = import.meta.env.BASE_URL.replace(/\/$/, "") || "/";
 
-    useEffect(() => {
-        wrapperRef.current?.scrollTo({ top: 0, behavior: "auto" });
-    }, [location.pathname]);
-
+const App = () => {
     return (
-        <>
-            <Styled.Wrapper ref={wrapperRef}>
+        <BrowserRouter basename={routerBase}>
+            <Styled.Wrapper>
                 <Header />
+
                 <Styled.Main>
-                    <Styled.RoutesWrapper>
-                        <AppRoutes />
-                    </Styled.RoutesWrapper>
+                    <AppRoutes />
                 </Styled.Main>
+
                 <Footer />
-                <BackToTop targetRef={wrapperRef} />
+
+                <BackToTop />
             </Styled.Wrapper>
-        </>
+        </BrowserRouter>
     );
-}
+};
+
+export default App;

@@ -1,38 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { TbArrowUp } from "react-icons/tb";
+import { useEffect, useState } from "react";
+import { FaArrowUp } from "react-icons/fa";
 import { Styled } from "./styled";
 
-export default function BackToTop({ targetRef, threshold = 240 }) {
-    const [show, setShow] = useState(false);
+const BackToTop = () => {
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const el = targetRef?.current;
-        if (!el) return;
-
-        const onScroll = () => {
-            setShow(el.scrollTop > threshold);
+        const handleScroll = () => {
+            setIsVisible(window.scrollY > 320);
         };
-        // initial check
-        onScroll();
 
-        el.addEventListener("scroll", onScroll, { passive: true });
-        return () => el.removeEventListener("scroll", onScroll);
-    }, [targetRef, threshold]);
+        handleScroll();
+
+        window.addEventListener("scroll", handleScroll, {
+            passive: true,
+        });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const handleClick = () => {
-        const el = targetRef?.current;
-        if (el?.scrollTo) el.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     };
 
     return (
-        <Styled.Fab
+        <Styled.Button
             type="button"
-            $show={show}
+            $visible={isVisible}
             onClick={handleClick}
             aria-label="Back to top"
             title="Back to top"
         >
-            <TbArrowUp size={19} aria-hidden="true" />
-        </Styled.Fab>
+            <FaArrowUp aria-hidden="true" />
+        </Styled.Button>
     );
-}
+};
+
+export default BackToTop;

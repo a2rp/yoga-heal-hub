@@ -1,55 +1,127 @@
-import React from "react";
-import { TbClock } from "react-icons/tb";
+import { TbActivity, TbClock, TbLeaf, TbStretching } from "react-icons/tb";
+import Breadcrumbs from "../../components/breadcrumbs";
 import { assetPath } from "../../utils/assets";
 import { Styled } from "./styled";
 
-const classData = [
+const classes = [
     {
-        title: "Beginners",
-        desc: "Perfect for newcomers. Learn breathing, alignment basics, and gentle stretches.",
-        slots: ["Mon, Wed, Fri: 8 AM - 9 AM", "Tue, Thu, Sat: 10 AM - 11 AM"],
+        icon: <TbLeaf aria-hidden="true" />,
+        title: "Beginner Yoga",
+        level: "Beginner",
+        description:
+            "A gentle introduction to foundational poses, breathing, balance, and comfortable movement.",
+        schedule: [
+            "Mon, Wed, Fri: 8:00 AM - 9:00 AM",
+            "Tue, Thu, Sat: 10:00 AM - 11:00 AM",
+        ],
     },
     {
-        title: "Intermediate",
-        desc: "Increase strength, flexibility, and balance with guided postures.",
-        slots: ["Mon, Wed, Fri: 10 AM - 11 AM", "Tue, Thu, Sat: 1 PM - 2 PM"],
+        icon: <TbStretching aria-hidden="true" />,
+        title: "Flexibility Flow",
+        level: "Intermediate",
+        description:
+            "A balanced session focused on mobility, controlled stretching, posture, and steady movement.",
+        schedule: [
+            "Mon, Wed, Fri: 10:00 AM - 11:00 AM",
+            "Tue, Thu, Sat: 1:00 PM - 2:00 PM",
+        ],
     },
     {
-        title: "Advanced",
-        desc: "Challenging flows, deeper asanas, and strength training for experienced yogis.",
-        slots: ["Mon, Wed, Fri: 1 PM - 2 PM", "Tue, Thu, Sat: 8 AM - 9 AM"],
+        icon: <TbActivity aria-hidden="true" />,
+        title: "Strength and Balance",
+        level: "Advanced",
+        description:
+            "A more demanding practice combining longer holds, balance work, strength, and focused transitions.",
+        schedule: [
+            "Mon, Wed, Fri: 1:00 PM - 2:00 PM",
+            "Tue, Thu, Sat: 8:00 AM - 9:00 AM",
+        ],
     },
 ];
 
-export default function Classes() {
+const Classes = () => {
     return (
         <Styled.Wrapper>
-            <span className="eyebrow">Find your pace</span>
-            <h2>Classes</h2>
+            <Styled.Container>
+                <Breadcrumbs items={[{ label: "Classes" }]} />
 
-            <Styled.Content>
-                <div className="left">
-                    {classData.map((item) => (
-                        <article className="section" key={item.title}>
-                            <h3>{item.title}</h3>
-                            <p>{item.desc}</p>
-                            {item.slots.map((slot) => (
-                                <span key={slot}>
-                                    <TbClock aria-hidden="true" />
-                                    {slot}
-                                </span>
-                            ))}
-                        </article>
-                    ))}
-                </div>
+                <Styled.Header>
+                    <Styled.Label>Find Your Pace</Styled.Label>
 
-                <img
-                    src={assetPath("images/yoga-class.jpg")}
-                    alt="Person practicing yoga outdoors"
-                    className="figure"
-                    loading="lazy"
-                />
-            </Styled.Content>
+                    <Styled.Title>
+                        Yoga classes for different stages
+                    </Styled.Title>
+
+                    <Styled.Intro>
+                        Choose a session that feels comfortable for your current
+                        level. Each class includes clear guidance and enough
+                        room to progress gradually.
+                    </Styled.Intro>
+                </Styled.Header>
+
+                <Styled.Feature>
+                    <Styled.FeatureImage
+                        src={assetPath("images/yoga-class.jpg")}
+                        alt="Yoga practitioner performing a controlled outdoor pose"
+                        loading="eager"
+                    />
+
+                    <Styled.FeatureContent>
+                        <Styled.FeatureLabel>
+                            Start where you are
+                        </Styled.FeatureLabel>
+
+                        <Styled.FeatureTitle>
+                            Consistency matters more than intensity
+                        </Styled.FeatureTitle>
+
+                        <Styled.FeatureText>
+                            A regular practice can improve mobility, strength,
+                            balance, body awareness, and relaxation. Choose a
+                            class that allows you to move confidently without
+                            forcing your body.
+                        </Styled.FeatureText>
+                    </Styled.FeatureContent>
+                </Styled.Feature>
+
+                <Styled.Grid>
+                    {classes.map(
+                        ({ icon, title, level, description, schedule }) => (
+                            <Styled.Card key={title}>
+                                <Styled.CardTop>
+                                    <Styled.IconBox>{icon}</Styled.IconBox>
+
+                                    <Styled.Level>{level}</Styled.Level>
+                                </Styled.CardTop>
+
+                                <Styled.CardTitle>{title}</Styled.CardTitle>
+
+                                <Styled.CardText>{description}</Styled.CardText>
+
+                                <Styled.Schedule>
+                                    {schedule.map((time) => (
+                                        <li key={time}>
+                                            <TbClock aria-hidden="true" />
+                                            <span>{time}</span>
+                                        </li>
+                                    ))}
+                                </Styled.Schedule>
+                            </Styled.Card>
+                        ),
+                    )}
+                </Styled.Grid>
+
+                <Styled.Note>
+                    <strong>New to yoga?</strong>
+                    <span>
+                        Beginner sessions are the easiest place to start. Arrive
+                        a few minutes early and let the instructor know about
+                        any movement limitations before class.
+                    </span>
+                </Styled.Note>
+            </Styled.Container>
         </Styled.Wrapper>
     );
-}
+};
+
+export default Classes;
