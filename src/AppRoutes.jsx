@@ -28,18 +28,21 @@ const RouteScrollToTop = () => {
 };
 
 const AppRoutes = () => {
+    const location = useLocation();
+
     return (
         <>
             <RouteScrollToTop />
 
             <Suspense
+                key={location.pathname}
                 fallback={
                     <Styled.RouteLoader role="status" aria-live="polite">
                         Loading page...
                     </Styled.RouteLoader>
                 }
             >
-                <Routes>
+                <Routes location={location}>
                     <Route path="/" element={<Home />} />
 
                     <Route path="/home" element={<Navigate to="/" replace />} />
