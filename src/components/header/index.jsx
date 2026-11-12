@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { FaBars, FaTimes } from "react-icons/fa";
 
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { Styled } from "./styled";
 
@@ -34,17 +34,11 @@ const navigationLinks = [
 ];
 
 const Header = () => {
-    const location = useLocation();
-
     const lastScrollPosition = useRef(0);
 
     const [isHidden, setIsHidden] = useState(false);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    useEffect(() => {
-        setIsMenuOpen(false);
-    }, [location.pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -154,6 +148,7 @@ const Header = () => {
                                 key={link.to}
                                 to={link.to}
                                 end={link.to === "/"}
+                                onClick={() => setIsMenuOpen(false)}
                             >
                                 {link.label}
                             </Styled.MobileNavItem>
