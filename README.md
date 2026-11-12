@@ -85,10 +85,10 @@ Open the project:
 cd yoga-heal-hub
 ```
 
-Install dependencies:
+Install the exact dependency versions recorded in the lockfile:
 
 ```bash
-npm install
+npm ci
 ```
 
 Start the development server:
